@@ -8,32 +8,10 @@ class Info{
         return ten;
     }
 
-    void setTen(string tenMoi) {
-        ten = tenMoi;
-    }
-
-    string getDienThoai() {
-        return dienThoai;
-    }
-
-    void setDienThoai(string soDienThoaiMoi) {
-        dienThoai = soDienThoaiMoi;
-    }
-
-    string getDiaChi() {
-        return diaChi;
-    }
-
-    void setDiaChi(string diaChiMoi) {
-        diaChi = diaChiMoi;
-    }
-
-    string getEmail() {
-        return email;
-    }
-
-    void setEmail(string emailMoi) {
-        email = emailMoi;
+    void setThongTin(string username){
+        string fn = username + ".txt";
+        ifstream in (fn);
+        cin>>ten>>dienThoai>>diaChi>>email;
     }
 
 };
