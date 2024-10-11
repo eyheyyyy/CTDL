@@ -13,7 +13,7 @@ class Employee{
     void setPassword (string _password) {password = _password;}
     void setThongTin(Info _thongtin) { thongtin = _thongtin;}
     void Thoat() {return EXIT_SUCCESS;}
-    void XemThongTin();
+    Info XemThongTin();
     void DoiPassWord(string);
 
 };
