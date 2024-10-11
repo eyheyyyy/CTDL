@@ -19,7 +19,7 @@ class Info{
     void setThongTin(string username){
         string fn = username + ".txt";
         ifstream in (fn);
-        cin>>ten>>dienThoai>>diaChi>>email;
+        in>>ten>>dienThoai>>diaChi>>email;
     }
 
 };
