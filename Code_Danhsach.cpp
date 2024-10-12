@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <windows.h>
@@ -29,7 +29,7 @@ public:
     void setThongTin(const string& filename) {
         ifstream in(filename);
         if (!in) {
-            MessageBox(NULL, "Không thể mở file người dùng", "Lỗi", MB_OK);
+            cout<<"Không thể mở file người dùng";
             return;
         }
         getline(in, ten);
@@ -44,7 +44,8 @@ public:
             + "Điện thoại: " + dienThoai + "\n"
             + "Địa chỉ: " + diaChi + "\n"
             + "Email: " + email;
-        MessageBox(NULL, thongTin.c_str(), "Thông tin người dùng", MB_OK);
+        cout<<"Thông tin của người dùng "<<ten<<":";
+        cout<<thongTin;
     }
 };
 
@@ -75,7 +76,7 @@ public:
     void DocDanhSach() {
         ifstream file("Employees.txt");
         if (!file) {
-            MessageBox(NULL, "Không thể mở file Employees.txt", "Lỗi", MB_OK);
+            cout<<"Không thể mở file Employees.txt";
             return;
         }
 
@@ -148,13 +149,42 @@ public:
     }
 
     void DangNhap(const string& tenNguoiDung) {
-        Node<T>* user = Tim(tenNguoiDung);
-        if (user != nullptr) {
-            user->data.XemThongTin();
+    Node<T>* user = Tim(tenNguoiDung); 
+    int soLanSai=0;
+    if (user != nullptr) {
+        string filePassword;
+        ifstream file;
+        file.open("Administrators.txt");
+        while (file >> tenNguoiDung >> filePassword) {
+            if (user->data.getTen() == tenNguoiDung) {
+                break; 
+            }
+        }
+        file.close();
+        if (file.eof()) {
+            file.open("Employees.txt");
+            while (file >> tenNguoiDung >> filePassword) {
+                if (user->data.getTen() == tenNguoiDung) {
+                    break; 
+                }
+            }
+            file.close();
+        }
+        string matKhauNhap;
+        cout << "Nhập mật khẩu: ";
+        cin >> matKhauNhap;
+
+        if (matKhauNhap == filePassword) {
+           cout<<"Đăng nhập thành công";
         }
         else {
-            MessageBox(NULL, "Không tìm thấy người dùng", "Lỗi", MB_OK);
+            cout<<"Sai mật khẩu";
+            soLanSai++;
         }
+    }
+    else {
+       cout<<"Không tìm thấy người dùng";
+    }
     }
 
     Node<T>* Tim(const string& tenNguoiDung) {
@@ -179,7 +209,7 @@ int main() {
     DanhSach<Info> ds;
     ds.DocDanhSach();
 
-    string username = "admin";
+    string username;
     ds.DangNhap(username);
 
     return 0;
