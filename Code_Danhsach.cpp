@@ -1,7 +1,4 @@
-﻿#include <iostream>
-#include <string>
-#include <fstream>
-#include <windows.h>
+﻿#include <bits/stdc++.h>
 
 using namespace std;
 
